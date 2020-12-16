@@ -7,10 +7,9 @@ from django.http.request import HttpRequest
 
 from opaque_keys.edx.keys import UsageKey
 from opaque_keys.edx.locator import CourseLocator
-from courseware.module_render import load_single_xblock
-from xmodule.capa_module import CapaDescriptor
+from lms.djangoapps.courseware.module_render import load_single_xblock
 from xmodule.modulestore.django import modulestore
-
+from xmodule.x_module import XModuleDescriptorToXBlockMixin
 from rapid_response_xblock.logger import SubmissionRecorder
 from rapid_response_xblock.models import (
     RapidResponseRun,
@@ -62,7 +61,7 @@ class TestEvents(RuntimeEnabledTestCase):
         store = modulestore()
         problem = [
             item for item in store.get_items(course.course_id)
-            if isinstance(item, CapaDescriptor)
+            if isinstance(item, XModuleDescriptorToXBlockMixin)
         ][0]
         problem.bind_for_student(self.runtime, self.instructor)
 
@@ -118,7 +117,6 @@ class TestEvents(RuntimeEnabledTestCase):
         A problem should trigger an event which is captured
         """
         problem = self.get_problem()
-
         problem.handle_ajax('problem_check', {
             "input_i4x-SGAU-SGA101-problem-"
             "2582bbb68672426297e525b49a383eb8_2_1": clicked_answer_id

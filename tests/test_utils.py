@@ -1,6 +1,6 @@
 """Tests for the util methods"""
 from opaque_keys.edx.keys import UsageKey
-from student.tests.factories import UserFactory
+from common.djangoapps.student.tests.factories import UserFactory
 
 
 from rapid_response_xblock.models import RapidResponseRun, RapidResponseSubmission

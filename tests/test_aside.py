@@ -7,7 +7,7 @@ from mock import Mock, patch, PropertyMock
 from dateutil.parser import parse as parse_datetime
 import pytz
 from opaque_keys.edx.keys import UsageKey
-from student.tests.factories import UserFactory
+from common.djangoapps.student.tests.factories import UserFactory
 
 from rapid_response_xblock.block import (
     RapidResponseAside,

@@ -7,7 +7,7 @@ from collections import namedtuple
 from django.db import transaction
 from opaque_keys.edx.keys import UsageKey
 from opaque_keys.edx.locator import CourseLocator
-from track.backends import BaseBackend
+from common.djangoapps.track.backends import BaseBackend
 
 from rapid_response_xblock.models import (
     RapidResponseRun,
